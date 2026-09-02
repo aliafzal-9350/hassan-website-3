@@ -624,7 +624,7 @@ export default function HomePage() {
                       required
                       value={details}
                       onChange={(e) => setDetails(e.target.value)}
-                      placeholder="e.g. 6 Pallets / 5,500 lbs / Liftgate + Electric Pallet Jack" 
+                      placeholder="e.g. 12 Pallets / 12,000 lbs / Liftgate + Electric Pallet Jack" 
                       className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-base sm:text-xs text-slate-900 placeholder:text-slate-400 focus:border-red-600 focus:bg-white focus:ring-1 focus:ring-red-600 outline-none transition" 
                     />
                   </div>
