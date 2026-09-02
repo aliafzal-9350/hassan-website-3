@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=Manrope:wght@600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 15, 23, 42;
+  --background-rgb: 255, 255, 255;
+  --brand-red: #dc2626;
+  --brand-red-dark: #b91c1c;
+  --brand-red-light: #fee2e2;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: light;
+}
+
+body {
+  color: #0f172a;
+  background-color: #ffffff;
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  overflow-x: hidden;
+}
+
+.font-heading {
+  font-family: 'Manrope', 'DM Sans', sans-serif;
+  letter-spacing: -0.03em;
+}
+
+.font-mono {
+  font-family: 'Space Grotesk', ui-monospace, SFMono-Regular, monospace;
+}
+
+/* Custom Clean Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #dc2626;
+}
+
+/* Bright Clean Grid Patterns */
+.bg-bright-grid {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(226, 232, 240, 0.6) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(226, 232, 240, 0.6) 1px, transparent 1px);
+}
+
+.bg-bright-dots {
+  background-image: radial-gradient(rgba(220, 38, 38, 0.15) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Subtle Red Ambient Gradients */
+.bg-gradient-red-soft {
+  background: radial-gradient(circle at 50% 30%, rgba(254, 226, 226, 0.8) 0%, rgba(255, 255, 255, 0) 70%);
+}
+
+.bg-gradient-red-card {
+  background: linear-gradient(135deg, #ffffff 0%, #fffbfb 100%);
+}
+
+/* Glow & Accent Utilities */
+.glow-red-subtle {
+  box-shadow: 0 4px 20px -2px rgba(220, 38, 38, 0.15);
+}
+
+.glow-red-lg {
+  box-shadow: 0 10px 30px -5px rgba(220, 38, 38, 0.25);
+}
+
+/* Hide scrollbar for clean horizontal scrolling on mobile */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Safe area padding for mobile notches and gesture bars */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 1rem);
+}
