@@ -2,12 +2,12 @@
 
 import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
-import { 
-  Phone, 
-  Mail, 
-  ShieldCheck, 
-  Zap, 
-  Truck, 
+import {
+  Phone,
+  Mail,
+  ShieldCheck,
+  Zap,
+  Truck,
   Crown,
   Instagram,
   Activity,
@@ -65,11 +65,11 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-red-600 selection:text-white antialiased overflow-x-hidden relative bg-bright-grid">
-      
+
       {/* 1. TELEMETRY STATUS BAR (BRIGHT WHITE & RED - RESPONSIVE) */}
       <div className="border-b border-red-100 bg-white/95 backdrop-blur-md text-slate-600 text-xs py-2 px-3 sm:px-8 relative z-50">
         <div className="max-w-7xl mx-auto flex justify-between items-center gap-2 sm:gap-4">
-          
+
           {/* Status & Credential Pills */}
           <div className="flex items-center gap-2 sm:gap-3 font-mono text-[10px] sm:text-[11px] overflow-x-auto no-scrollbar py-0.5 whitespace-nowrap">
             <span className="flex items-center gap-1.5 text-red-700 font-bold bg-red-50 px-2 sm:px-2.5 py-0.5 rounded-full border border-red-200 shrink-0">
@@ -88,9 +88,9 @@ export default function HomePage() {
 
           {/* Social Channels */}
           <div className="flex items-center gap-3 sm:gap-5 shrink-0">
-            <a 
-              href="https://www.instagram.com/cargokingsinc/" 
-              target="_blank" 
+            <a
+              href="https://www.instagram.com/cargokingsinc/"
+              target="_blank"
               rel="noreferrer"
               className="flex items-center gap-1 sm:gap-1.5 text-slate-600 hover:text-red-600 transition group font-medium"
               title="Instagram @cargokingsinc"
@@ -99,9 +99,9 @@ export default function HomePage() {
               <span className="text-[11px] font-mono hidden md:inline">@cargokingsinc</span>
             </a>
             <span className="text-slate-300 hidden sm:inline">•</span>
-            <a 
-              href="https://www.tiktok.com/@cargokingsinc" 
-              target="_blank" 
+            <a
+              href="https://www.tiktok.com/@cargokingsinc"
+              target="_blank"
               rel="noreferrer"
               className="flex items-center gap-1 sm:gap-1.5 text-slate-600 hover:text-red-600 transition group font-medium"
               title="TikTok @cargokingsinc"
@@ -119,7 +119,7 @@ export default function HomePage() {
       {/* 2. COMMAND HEADER NAVIGATION */}
       <header className="border-b border-slate-100 bg-white/95 backdrop-blur-xl sticky top-0 z-40 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-8 h-16 sm:h-20 flex items-center justify-between">
-          
+
           {/* Brand Wordmark with Crown Accent */}
           <a href="#" className="flex items-center gap-2.5 sm:gap-3.5 group">
             <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white flex items-center justify-center shadow-sm sm:shadow-md border border-slate-200 overflow-hidden group-hover:border-red-400 transition shrink-0">
@@ -152,7 +152,7 @@ export default function HomePage() {
 
           {/* Header Action Buttons */}
           <div className="flex items-center gap-2 sm:gap-3">
-            <a 
+            <a
               href="tel:9295037626"
               className="flex items-center gap-1.5 sm:gap-2 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white text-[11px] sm:text-xs font-mono font-bold tracking-wider uppercase px-3 sm:px-5 py-2.5 sm:py-3 rounded-xl shadow-red-md transition transform hover:-translate-y-0.5 active:translate-y-0"
             >
@@ -178,8 +178,8 @@ export default function HomePage() {
         {mobileMenuOpen && (
           <div className="lg:hidden border-t border-slate-100 bg-white/98 backdrop-blur-2xl px-4 py-5 shadow-xl space-y-3">
             <div className="flex flex-col space-y-1.5 font-mono text-xs uppercase tracking-wider font-bold">
-              <a 
-                href="#hero" 
+              <a
+                href="#hero"
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex items-center justify-between p-3 rounded-xl bg-red-50/70 text-red-700 border border-red-100"
               >
@@ -189,8 +189,8 @@ export default function HomePage() {
                 </span>
                 <ChevronRight className="w-4 h-4 text-red-400" />
               </a>
-              <a 
-                href="#specs" 
+              <a
+                href="#specs"
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex items-center justify-between p-3 rounded-xl text-slate-800 hover:bg-slate-50 transition border border-transparent hover:border-slate-100"
               >
@@ -200,8 +200,8 @@ export default function HomePage() {
                 </span>
                 <ChevronRight className="w-4 h-4 text-slate-400" />
               </a>
-              <a 
-                href="#compliance" 
+              <a
+                href="#compliance"
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex items-center justify-between p-3 rounded-xl text-slate-800 hover:bg-slate-50 transition border border-transparent hover:border-slate-100"
               >
@@ -211,8 +211,8 @@ export default function HomePage() {
                 </span>
                 <ChevronRight className="w-4 h-4 text-slate-400" />
               </a>
-              <a 
-                href="#booking" 
+              <a
+                href="#booking"
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex items-center justify-between p-3 rounded-xl text-slate-800 hover:bg-slate-50 transition border border-transparent hover:border-slate-100"
               >
@@ -225,7 +225,7 @@ export default function HomePage() {
             </div>
 
             <div className="pt-2 border-t border-slate-100 flex flex-col gap-2">
-              <a 
+              <a
                 href="tel:9295037626"
                 className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-red-600 to-red-700 text-white font-mono font-bold text-xs uppercase py-3.5 rounded-xl shadow-red-md"
               >
@@ -249,12 +249,12 @@ export default function HomePage() {
 
       {/* 3. HERO SHOWCASE WITH 3D TELEMETRY (2-COLUMN SHOWCASE) */}
       <section id="hero" className="relative px-4 sm:px-8 max-w-7xl mx-auto pt-6 sm:pt-8 pb-12 sm:pb-16">
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-10 items-center">
-          
+
           {/* Left Column: Hero Information */}
           <div className="lg:col-span-6 space-y-4 sm:space-y-6">
-            
+
             <div className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-red-50 border border-red-200 text-red-700 text-[11px] sm:text-xs font-mono font-bold uppercase tracking-wider shadow-sm max-w-full">
               <Radio className="w-3.5 h-3.5 text-red-600 animate-pulse shrink-0" />
               <span className="truncate">2 Dedicated Power Units Ready For Dispatch</span>
@@ -311,7 +311,7 @@ export default function HomePage() {
           {/* Right Column: Dedicated 3D Interactive Viewer Card */}
           <div className="lg:col-span-6 mt-2 lg:mt-0">
             <div className="bg-gradient-to-b from-white to-red-50/20 border border-slate-200/90 rounded-2xl sm:rounded-3xl shadow-card overflow-hidden relative p-2 sm:p-2.5">
-              
+
               {/* Card Header with Status & Hints */}
               <div className="flex items-center justify-between px-3 sm:px-4 pt-2.5 sm:pt-3 pb-2 border-b border-slate-100">
                 <div className="flex items-center gap-1.5 sm:gap-2 font-mono text-[10px] sm:text-[11px] text-slate-700 font-bold">
@@ -336,15 +336,14 @@ export default function HomePage() {
               <div className="p-2 sm:p-3 bg-white border-t border-slate-100">
                 <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center justify-center gap-1.5 sm:gap-2 font-mono text-xs">
                   <span className="text-[10px] font-bold text-slate-400 uppercase mr-1 hidden md:inline">Camera View:</span>
-                  
+
                   <button
                     type="button"
                     onClick={() => setActivePreset('default')}
-                    className={`px-3 py-2 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5 min-h-[40px] ${
-                      activePreset === 'default'
+                    className={`px-3 py-2 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5 min-h-[40px] ${activePreset === 'default'
                         ? 'bg-red-600 text-white shadow-red-sm'
                         : 'bg-slate-100 text-slate-700 hover:bg-red-50 hover:text-red-600'
-                    }`}
+                      }`}
                   >
                     <Compass className="w-3.5 h-3.5 shrink-0" />
                     <span>3/4 View</span>
@@ -353,11 +352,10 @@ export default function HomePage() {
                   <button
                     type="button"
                     onClick={() => setActivePreset('side')}
-                    className={`px-3 py-2 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5 min-h-[40px] ${
-                      activePreset === 'side'
+                    className={`px-3 py-2 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5 min-h-[40px] ${activePreset === 'side'
                         ? 'bg-red-600 text-white shadow-red-sm'
                         : 'bg-slate-100 text-slate-700 hover:bg-red-50 hover:text-red-600'
-                    }`}
+                      }`}
                   >
                     <Layers className="w-3.5 h-3.5 shrink-0" />
                     <span>Cargo Side</span>
@@ -366,11 +364,10 @@ export default function HomePage() {
                   <button
                     type="button"
                     onClick={() => setActivePreset('rear')}
-                    className={`px-3 py-2 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5 min-h-[40px] ${
-                      activePreset === 'rear'
+                    className={`px-3 py-2 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5 min-h-[40px] ${activePreset === 'rear'
                         ? 'bg-red-600 text-white shadow-red-sm'
                         : 'bg-slate-100 text-slate-700 hover:bg-red-50 hover:text-red-600'
-                    }`}
+                      }`}
                   >
                     <Truck className="w-3.5 h-3.5 shrink-0" />
                     <span>Rear Liftgate</span>
@@ -379,11 +376,10 @@ export default function HomePage() {
                   <button
                     type="button"
                     onClick={() => setActivePreset('front')}
-                    className={`px-3 py-2 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5 min-h-[40px] ${
-                      activePreset === 'front'
+                    className={`px-3 py-2 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5 min-h-[40px] ${activePreset === 'front'
                         ? 'bg-red-600 text-white shadow-red-sm'
                         : 'bg-slate-100 text-slate-700 hover:bg-red-50 hover:text-red-600'
-                    }`}
+                      }`}
                   >
                     <Gauge className="w-3.5 h-3.5 shrink-0" />
                     <span>Front Cab</span>
@@ -401,7 +397,7 @@ export default function HomePage() {
       {/* 4. FLEET CAPABILITIES & SECURITY DIAGNOSTICS */}
       <section id="specs" className="border-t border-slate-200 bg-slate-50/60 py-12 sm:py-20 px-4 sm:px-8 relative">
         <div className="max-w-7xl mx-auto">
-          
+
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-14 gap-4 sm:gap-6">
             <div>
               <span className="text-xs font-mono font-bold uppercase tracking-widest text-red-600 flex items-center gap-2">
@@ -418,7 +414,7 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
-            
+
             {/* Feature 1 */}
             <div className="bg-white border border-slate-200 p-6 sm:p-8 rounded-2xl sm:rounded-3xl relative group hover:border-red-400 transition-all duration-300 shadow-card hover:shadow-red-sm">
               <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-red-50 border border-red-200 flex items-center justify-center text-red-600 mb-5 sm:mb-6 group-hover:scale-105 transition-transform">
@@ -516,12 +512,12 @@ export default function HomePage() {
       {/* 5. DIRECT DISPATCH & RATE CONFIRMATION TERMINAL */}
       <section id="booking" className="py-12 sm:py-20 px-4 sm:px-8 max-w-7xl mx-auto relative">
         <div className="bg-gradient-to-br from-white via-white to-red-50/50 border border-red-200/80 rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-14 shadow-card relative overflow-hidden">
-          
+
           {/* Ambient Red Glow */}
           <div className="absolute -top-24 -right-24 w-80 h-80 bg-red-600/5 rounded-full blur-3xl pointer-events-none" />
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
-            
+
             <div className="lg:col-span-6 space-y-4 sm:space-y-6">
               <span className="text-xs font-mono font-bold uppercase tracking-widest text-red-600 flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-red-600 animate-ping"></span>
@@ -596,51 +592,51 @@ export default function HomePage() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                       <label className="text-[10px] sm:text-[11px] font-mono font-bold text-slate-700 uppercase block mb-1">Pickup Zip / Metro</label>
-                      <input 
-                        type="text" 
+                      <input
+                        type="text"
                         required
                         value={pickup}
                         onChange={(e) => setPickup(e.target.value)}
-                        placeholder="e.g. 11430 (JFK Airport)" 
-                        className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-base sm:text-xs text-slate-900 placeholder:text-slate-400 focus:border-red-600 focus:bg-white focus:ring-1 focus:ring-red-600 outline-none transition" 
+                        placeholder="e.g. 11430 (JFK Airport)"
+                        className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-base sm:text-xs text-slate-900 placeholder:text-slate-400 focus:border-red-600 focus:bg-white focus:ring-1 focus:ring-red-600 outline-none transition"
                       />
                     </div>
                     <div>
                       <label className="text-[10px] sm:text-[11px] font-mono font-bold text-slate-700 uppercase block mb-1">Dropoff Zip / City</label>
-                      <input 
-                        type="text" 
+                      <input
+                        type="text"
                         required
                         value={dropoff}
                         onChange={(e) => setDropoff(e.target.value)}
-                        placeholder="e.g. 07114 (Newark Port)" 
-                        className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-base sm:text-xs text-slate-900 placeholder:text-slate-400 focus:border-red-600 focus:bg-white focus:ring-1 focus:ring-red-600 outline-none transition" 
+                        placeholder="e.g. 07114 (Newark Port)"
+                        className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-base sm:text-xs text-slate-900 placeholder:text-slate-400 focus:border-red-600 focus:bg-white focus:ring-1 focus:ring-red-600 outline-none transition"
                       />
                     </div>
                   </div>
                   <div>
                     <label className="text-[10px] sm:text-[11px] font-mono font-bold text-slate-700 uppercase block mb-1">Pallet Count, Weight & Liftgate Need</label>
-                    <input 
-                      type="text" 
+                    <input
+                      type="text"
                       required
                       value={details}
                       onChange={(e) => setDetails(e.target.value)}
-                      placeholder="e.g. 12 Pallets / 12,000 lbs / Liftgate + Electric Pallet Jack" 
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-base sm:text-xs text-slate-900 placeholder:text-slate-400 focus:border-red-600 focus:bg-white focus:ring-1 focus:ring-red-600 outline-none transition" 
+                      placeholder="e.g. 12 Pallets / 10,000 lbs / Liftgate + Electric Pallet Jack"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-base sm:text-xs text-slate-900 placeholder:text-slate-400 focus:border-red-600 focus:bg-white focus:ring-1 focus:ring-red-600 outline-none transition"
                     />
                   </div>
                   <div>
                     <label className="text-[10px] sm:text-[11px] font-mono font-bold text-slate-700 uppercase block mb-1">Shipper / Broker Contact (Email or Phone)</label>
-                    <input 
-                      type="text" 
+                    <input
+                      type="text"
                       required
                       value={contact}
                       onChange={(e) => setContact(e.target.value)}
-                      placeholder="e.g. dispatch@freightbroker.com or (555) 000-0000" 
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-base sm:text-xs text-slate-900 placeholder:text-slate-400 focus:border-red-600 focus:bg-white focus:ring-1 focus:ring-red-600 outline-none transition" 
+                      placeholder="e.g. dispatch@freightbroker.com or (555) 000-0000"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-base sm:text-xs text-slate-900 placeholder:text-slate-400 focus:border-red-600 focus:bg-white focus:ring-1 focus:ring-red-600 outline-none transition"
                     />
                   </div>
-                  <button 
-                    type="submit" 
+                  <button
+                    type="submit"
                     className="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-bold font-mono text-xs uppercase tracking-wider py-3.5 sm:py-4 rounded-xl transition shadow-red-md flex items-center justify-center gap-2 transform hover:-translate-y-0.5 active:translate-y-0 min-h-[46px]"
                   >
                     <span>Submit Rate Inquiry</span>
@@ -658,7 +654,7 @@ export default function HomePage() {
       <footer id="compliance" className="border-t border-slate-200 bg-slate-50 text-slate-600 pt-12 sm:pt-16 pb-24 lg:pb-12 px-4 sm:px-8 font-mono text-xs">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 pb-10 sm:pb-12 border-b border-slate-200">
-            
+
             <div className="space-y-3">
               <div className="flex items-center gap-2">
                 <Crown className="w-4 h-4 text-red-600 shrink-0" />
