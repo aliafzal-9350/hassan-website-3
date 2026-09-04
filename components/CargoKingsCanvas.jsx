@@ -1,6 +1,6 @@
 'use client';
 
-import React, { Suspense, useRef, useState, useEffect, useMemo } from 'react';
+import React, { Suspense, useRef, useState, useEffect, useMemo, useLayoutEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, useGLTF, ContactShadows, Text, useProgress } from '@react-three/drei';
 import * as THREE from 'three';
@@ -53,103 +53,57 @@ class ModelErrorBoundary extends React.Component {
   }
 }
 
-function TruckDecals({ dimensions }) {
-  const halfWidth = dimensions.width / 2;
-  const boxX = halfWidth + 0.006;
+const UNIT_CONFIG = {
+  white: {
+    paint: '#F8FAFC',
+    roughness: 0.44,
+    metalness: 0.05,
+    branding: '#0F172A',
+  },
+  blue: {
+    paint: '#0D449C',
+    roughness: 0.32,
+    metalness: 0.28,
+    branding: '#FFFFFF',
+  },
+};
+
+function TruckBranding({ dimensions, selectedUnit }) {
+  const boxX = dimensions.width / 2 + 0.008;
+  const color = UNIT_CONFIG[selectedUnit].branding;
 
   return (
     <group>
-      {/* --- DRIVER SIDE BOX BRANDING --- */}
-      <group position={[-boxX, 1.18, -0.65]} rotation={[0, -Math.PI / 2, 0]}>
-        <Text 
-          fontSize={0.18} 
-          letterSpacing={-0.01} 
-          color="#0F172A" 
-          anchorX="center" 
-          anchorY="middle" 
-          fontWeight="900"
-        >
-          CARGO KINGS INC.
-        </Text>
-        <Text 
-          position={[0, -0.16, 0]} 
-          fontSize={0.045} 
-          letterSpacing={0.08} 
-          color="#DC2626" 
-          anchorX="center" 
-          anchorY="middle" 
-          fontWeight="bold"
-        >
-          EXPEDITED FREIGHT • TSA & TWIC • ELECTRIC PALLET
-        </Text>
-      </group>
-
-      {/* --- PASSENGER SIDE BOX BRANDING --- */}
-      <group position={[boxX, 1.18, -0.65]} rotation={[0, Math.PI / 2, 0]}>
-        <Text 
-          fontSize={0.18} 
-          letterSpacing={-0.01} 
-          color="#0F172A" 
-          anchorX="center" 
-          anchorY="middle" 
-          fontWeight="900"
-        >
-          CARGO KINGS INC.
-        </Text>
-        <Text 
-          position={[0, -0.16, 0]} 
-          fontSize={0.045} 
-          letterSpacing={0.08} 
-          color="#DC2626" 
-          anchorX="center" 
-          anchorY="middle" 
-          fontWeight="bold"
-        >
-          EXPEDITED FREIGHT • TSA & TWIC • ELECTRIC PALLET
-        </Text>
-      </group>
-
-      {/* --- REAR ROLLUP DOOR BRANDING --- */}
-      <group position={[0, 1.05, -2.41]} rotation={[0, Math.PI, 0]}>
-        <Text 
-          fontSize={0.10} 
-          letterSpacing={-0.01} 
-          color="#DC2626" 
-          anchorX="center" 
-          anchorY="middle" 
-          fontWeight="900"
-        >
-          CARGO KINGS INC.
-        </Text>
-        <Text 
-          position={[0, -0.12, 0]} 
-          fontSize={0.038} 
-          letterSpacing={0.06} 
-          color="#0F172A" 
-          anchorX="center" 
-          anchorY="middle" 
-          fontWeight="bold"
-        >
-          USDOT 3801397 • MC 1368401
-        </Text>
-        <Text 
-          position={[0, -0.22, 0]} 
-          fontSize={0.032} 
-          letterSpacing={0.04} 
-          color="#DC2626" 
-          anchorX="center" 
-          anchorY="middle" 
-          fontWeight="medium"
-        >
-          DISPATCH: (929) 503-7626
-        </Text>
-      </group>
+      <Text
+        position={[-boxX, 1.18, -0.65]}
+        rotation={[0, -Math.PI / 2, 0]}
+        fontSize={0.18}
+        letterSpacing={0.005}
+        color={color}
+        anchorX="center"
+        anchorY="middle"
+        fontWeight="900"
+      >
+        CARGO KINGS INC
+      </Text>
+      <Text
+        position={[boxX, 1.18, -0.65]}
+        rotation={[0, Math.PI / 2, 0]}
+        fontSize={0.18}
+        letterSpacing={0.005}
+        color={color}
+        anchorX="center"
+        anchorY="middle"
+        fontWeight="900"
+      >
+        CARGO KINGS INC
+      </Text>
     </group>
   );
 }
 
-function Model({ activePreset }) {
-  const { scene } = useGLTF('/model/truck.glb');
+function Model({ activePreset, selectedUnit }) {
+  const { scene } = useGLTF('/models/truck.glb');
   const modelRef = useRef();
 
   // Normalize scale and center deterministically so the truck is always perfectly framed
@@ -179,15 +133,11 @@ function Model({ activePreset }) {
     clone.position.z = -center.z * scaleFactor;
     clone.updateMatrixWorld(true);
 
-    // Enhance materials and shadows
+    // Set lighting-independent mesh flags once; unit paint is mutated below.
     clone.traverse((child) => {
       if (child.isMesh) {
         child.castShadow = true;
         child.receiveShadow = true;
-        if (child.material) {
-          child.material.roughness = Math.min(child.material.roughness ?? 0.35, 0.45);
-          child.material.needsUpdate = true;
-        }
       }
     });
 
@@ -195,21 +145,35 @@ function Model({ activePreset }) {
     const scaledSize = new THREE.Vector3();
     scaledBox.getSize(scaledSize);
 
-    return { 
-      normalizedScene: clone, 
-      dimensions: {
-        width: scaledSize.x,
-        height: scaledSize.y,
-        length: scaledSize.z,
-        minY: scaledBox.min.y,
-        maxY: scaledBox.max.y,
-        minX: scaledBox.min.x,
-        maxX: scaledBox.max.x,
-        minZ: scaledBox.min.z,
-        maxZ: scaledBox.max.z
-      }
+    return {
+      normalizedScene: clone,
+      dimensions: { width: scaledSize.x },
     };
   }, [scene]);
+
+  useLayoutEffect(() => {
+    const config = UNIT_CONFIG[selectedUnit];
+    normalizedScene.traverse((child) => {
+      if (!child.isMesh || !child.material) return;
+
+      const materials = Array.isArray(child.material) ? child.material : [child.material];
+      const updatedMaterials = materials.map((sourceMaterial) => {
+        const material = sourceMaterial.clone();
+        const surfaceName = `${child.name} ${material.name}`.toLowerCase();
+        const isProtected = /tire|wheel|rubber|glass|window|bumper|aluminum|trim|chrome|light|mirror/.test(surfaceName);
+        const isPaint = !isProtected && /cab|body|cargo|box|paint|door|fender|hood/.test(surfaceName);
+
+        if (isPaint && 'color' in material) {
+          material.color.set(config.paint);
+          material.roughness = config.roughness;
+          material.metalness = config.metalness;
+          material.needsUpdate = true;
+        }
+        return material;
+      });
+      child.material = Array.isArray(child.material) ? updatedMaterials : updatedMaterials[0];
+    });
+  }, [normalizedScene, selectedUnit]);
 
   useFrame((state, delta) => {
     if (!modelRef.current) return;
@@ -230,14 +194,14 @@ function Model({ activePreset }) {
   return (
     <group ref={modelRef} position={[0, 0, 0]}>
       <primitive object={normalizedScene} />
-      <TruckDecals dimensions={dimensions} />
+      <TruckBranding dimensions={dimensions} selectedUnit={selectedUnit} />
     </group>
   );
 }
 
-useGLTF.preload('/model/truck.glb');
+useGLTF.preload('/models/truck.glb');
 
-export default function CargoKingsCanvas({ activePreset = 'default' }) {
+export default function CargoKingsCanvas({ activePreset = 'default', selectedUnit = 'white' }) {
   const [webglSupported, setWebglSupported] = useState(true);
 
   useEffect(() => {
@@ -301,7 +265,7 @@ export default function CargoKingsCanvas({ activePreset = 'default' }) {
 
         <ModelErrorBoundary>
           <Suspense fallback={null}>
-            <Model activePreset={activePreset} />
+            <Model activePreset={activePreset} selectedUnit={selectedUnit} />
             <ContactShadows
               position={[0, 0, 0]}
               opacity={0.4}
