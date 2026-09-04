@@ -69,7 +69,7 @@ function TruckDecals({ dimensions }) {
           anchorY="middle" 
           fontWeight="900"
         >
-          CARGO KINGS
+          CARGO KINGS INC.
         </Text>
         <Text 
           position={[0, -0.16, 0]} 
@@ -94,7 +94,7 @@ function TruckDecals({ dimensions }) {
           anchorY="middle" 
           fontWeight="900"
         >
-          CARGO KINGS
+          CARGO KINGS INC.
         </Text>
         <Text 
           position={[0, -0.16, 0]} 
