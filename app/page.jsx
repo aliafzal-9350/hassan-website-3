@@ -358,13 +358,13 @@ export default function HomePage() {
 
               {/* 3D Canvas Box */}
               <div className="w-full h-[290px] xs:h-[340px] sm:h-[420px] lg:h-[470px] relative bg-gradient-to-b from-slate-50/60 to-white rounded-xl sm:rounded-2xl overflow-hidden">
-                <div className="absolute top-3 right-3 z-10 flex flex-col items-end gap-2">
-                  <div className="flex flex-wrap justify-end gap-1.5 rounded-2xl border border-white/70 bg-white/65 p-1.5 shadow-lg shadow-slate-900/10 backdrop-blur-xl">
+                <div className="absolute top-3 left-3 right-3 sm:left-auto sm:right-3 z-10 flex flex-col items-end gap-2">
+                  <div className="grid w-full grid-cols-2 gap-1 rounded-2xl border border-white/70 bg-white/65 p-1 shadow-lg shadow-slate-900/10 backdrop-blur-xl sm:flex sm:w-auto sm:flex-wrap sm:justify-end sm:gap-1.5 sm:p-1.5">
                     <button
                       type="button"
                       onClick={() => setSelectedUnit('white')}
                       aria-pressed={selectedUnit === 'white'}
-                      className={`flex items-center gap-1.5 rounded-xl px-2.5 py-2 text-[10px] font-bold uppercase tracking-wide transition ${selectedUnit === 'white' ? 'bg-slate-900 text-white shadow-md' : 'text-slate-700 hover:bg-white/80'}`}
+                      className={`flex min-w-0 items-center justify-center gap-1 rounded-xl px-1.5 py-1.5 text-[9px] font-bold uppercase tracking-wide whitespace-nowrap transition sm:gap-1.5 sm:px-2.5 sm:py-2 sm:text-[10px] ${selectedUnit === 'white' ? 'bg-slate-900 text-white shadow-md' : 'text-slate-700 hover:bg-white/80'}`}
                     >
                       <span className="h-2.5 w-2.5 rounded-full border border-slate-400 bg-white" />
                       Unit #1: Arctic White
@@ -373,7 +373,7 @@ export default function HomePage() {
                       type="button"
                       onClick={() => setSelectedUnit('blue')}
                       aria-pressed={selectedUnit === 'blue'}
-                      className={`flex items-center gap-1.5 rounded-xl px-2.5 py-2 text-[10px] font-bold uppercase tracking-wide transition ${selectedUnit === 'blue' ? 'bg-[#0D449C] text-white shadow-md' : 'text-slate-700 hover:bg-white/80'}`}
+                      className={`flex min-w-0 items-center justify-center gap-1 rounded-xl px-1.5 py-1.5 text-[9px] font-bold uppercase tracking-wide whitespace-nowrap transition sm:gap-1.5 sm:px-2.5 sm:py-2 sm:text-[10px] ${selectedUnit === 'blue' ? 'bg-[#0D449C] text-white shadow-md' : 'text-slate-700 hover:bg-white/80'}`}
                     >
                       <span className="h-2.5 w-2.5 rounded-full border border-blue-300 bg-[#0D449C]" />
                       Unit #2: Cobalt Blue
