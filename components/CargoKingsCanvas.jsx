@@ -70,6 +70,10 @@ const UNIT_CONFIG = {
 
 function TruckBranding({ dimensions, selectedUnit }) {
   const boxX = dimensions.width / 2 + 0.008;
+  const rearZ = -dimensions.length / 2 - 0.012;
+  const rearBrandSize = Math.min(0.115, dimensions.width * 0.07);
+  const rearDetailSize = rearBrandSize * 0.76;
+  const rearTextWidth = dimensions.width * 0.76;
   const color = UNIT_CONFIG[selectedUnit].branding;
 
   return (
@@ -97,6 +101,48 @@ function TruckBranding({ dimensions, selectedUnit }) {
         fontWeight="900"
       >
         CARGO KINGS INC
+      </Text>
+      <Text
+        position={[0, 1.32, rearZ]}
+        rotation={[0, Math.PI, 0]}
+        fontSize={rearBrandSize}
+        letterSpacing={0.004}
+        maxWidth={rearTextWidth}
+        textAlign="center"
+        color={color}
+        anchorX="center"
+        anchorY="middle"
+        fontWeight="900"
+      >
+        CARGO KINGS INC
+      </Text>
+      <Text
+        position={[0, 1.08, rearZ]}
+        rotation={[0, Math.PI, 0]}
+        fontSize={rearDetailSize}
+        letterSpacing={0.003}
+        maxWidth={rearTextWidth}
+        textAlign="center"
+        color={color}
+        anchorX="center"
+        anchorY="middle"
+        fontWeight="900"
+      >
+        MC 1368401
+      </Text>
+      <Text
+        position={[0, 0.88, rearZ]}
+        rotation={[0, Math.PI, 0]}
+        fontSize={rearDetailSize}
+        letterSpacing={0.003}
+        maxWidth={rearTextWidth}
+        textAlign="center"
+        color={color}
+        anchorX="center"
+        anchorY="middle"
+        fontWeight="900"
+      >
+        USDOT 3801397
       </Text>
     </group>
   );
@@ -147,7 +193,7 @@ function Model({ activePreset, selectedUnit }) {
 
     return {
       normalizedScene: clone,
-      dimensions: { width: scaledSize.x },
+      dimensions: { width: scaledSize.x, length: scaledSize.z },
     };
   }, [scene]);
 

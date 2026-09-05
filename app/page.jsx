@@ -23,22 +23,7 @@ import {
   Check,
   Menu,
   X,
-  Camera,
-  ChevronLeft,
-  Maximize2
 } from 'lucide-react';
-
-const fleetGallery = [
-  { image: '/image/ccccc.jpeg', label: 'Primary fleet', title: 'Blue 26ft straight box', detail: 'Full 3/4 exterior profile' },
-  { image: '/image/mmmm.jpeg', label: 'Rear access', title: 'Dock-high rear entry', detail: 'Liftgate ready for loading' },
-  { image: '/image/ooooo.jpeg', label: 'Cargo handling', title: 'Electric pallet jack', detail: 'Onboard powered equipment' },
-  { image: '/image/pppp.jpeg', label: 'Side profile', title: 'Expedited box body', detail: 'High-volume cargo capacity' },
-  { image: '/image/ssssss.jpeg', label: 'Fleet angle', title: 'Front 3/4 view', detail: 'Road-ready power unit' },
-  { image: '/image/rrrrr.jpeg', label: 'Rear liftgate', title: 'Ground-level access', detail: 'Hydraulic liftgate platform' },
-  { image: '/image/uuuuuu.jpeg', label: 'Brand identity', title: 'CARGO KINGS INC.', detail: 'MC and USDOT marked cab' },
-  { image: '/image/vvvvv.jpeg', label: 'Cab detail', title: 'Driver-side finish', detail: 'Clean, branded operator cab' },
-  { image: '/image/whi.jpeg', label: 'White unit', title: 'Additional capacity', detail: 'Second dedicated power unit' },
-];
 
 const CargoKingsCanvas = dynamic(() => import('@/components/CargoKingsCanvas'), {
   ssr: false,
@@ -64,9 +49,6 @@ export default function HomePage() {
   const [details, setDetails] = useState('');
   const [contact, setContact] = useState('');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeGalleryIndex, setActiveGalleryIndex] = useState(0);
-
-  const activeGalleryItem = fleetGallery[activeGalleryIndex];
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -162,7 +144,6 @@ export default function HomePage() {
               <span className="w-1.5 h-1.5 rounded-full bg-red-600"></span>
               01 // 3D Fleet
             </a>
-            <a href="#gallery" className="hover:text-red-600 transition">02 // Gallery</a>
             <a href="#specs" className="hover:text-red-600 transition">02 // Specs</a>
             <a href="#compliance" className="hover:text-red-600 transition">03 // TSA & TWIC</a>
             <a href="#booking" className="hover:text-red-600 transition">04 // Rapid Quote</a>
@@ -215,17 +196,6 @@ export default function HomePage() {
                 <span className="flex items-center gap-2.5">
                   <Truck className="w-4 h-4 text-slate-500" />
                   02 // Fleet Specs & Pallet Jack
-                </span>
-                <ChevronRight className="w-4 h-4 text-slate-400" />
-              </a>
-              <a
-                href="#gallery"
-                onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center justify-between p-3 rounded-xl text-slate-800 hover:bg-slate-50 transition border border-transparent hover:border-slate-100"
-              >
-                <span className="flex items-center gap-2.5">
-                  <Camera className="w-4 h-4 text-slate-500" />
-                  02 // Fleet Photo Gallery
                 </span>
                 <ChevronRight className="w-4 h-4 text-slate-400" />
               </a>
@@ -422,96 +392,7 @@ export default function HomePage() {
 
       </section>
 
-      {/* 4. REAL FLEET & EQUIPMENT GALLERY */}
-      <section id="gallery" className="border-y border-slate-200 bg-white text-slate-900 bg-bright-grid py-14 sm:py-20 px-4 sm:px-8 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto relative">
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-5 mb-8 sm:mb-10">
-            <div>
-              <span className="text-xs font-mono font-bold uppercase tracking-widest text-red-600 flex items-center gap-2">
-                <Camera className="w-4 h-4" />
-                CARGO KINGS INC. / FIELD GALLERY
-              </span>
-              <h2 className="text-3xl sm:text-5xl font-black tracking-tight mt-2 font-heading text-slate-950">
-                Equipment you can put to work.
-              </h2>
-            </div>
-            <p className="text-slate-600 text-sm leading-relaxed max-w-md">
-              A closer look at the dedicated straight-box fleet, liftgate access, and onboard handling equipment behind every dispatch.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5">
-            <div className="lg:col-span-8 relative rounded-2xl overflow-hidden border border-slate-200 bg-slate-100 min-h-[360px] sm:min-h-[530px] group shadow-card">
-              <img
-                src={activeGalleryItem.image}
-                alt={`${activeGalleryItem.title} for Cargo Kings Inc`}
-                className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/10" />
-              <div className="absolute top-4 left-4 right-4 flex items-center justify-between">
-                <span className="bg-red-600 text-white px-3 py-1.5 rounded-md text-[10px] font-mono font-bold uppercase tracking-wider">
-                  {String(activeGalleryIndex + 1).padStart(2, '0')} / {String(fleetGallery.length).padStart(2, '0')}
-                </span>
-                <span className="bg-white/90 border border-white px-3 py-1.5 rounded-md text-[10px] font-mono font-bold uppercase tracking-wider text-slate-700">
-                  Verified fleet photo
-                </span>
-              </div>
-              <div className="absolute bottom-5 left-5 right-5 sm:bottom-7 sm:left-7 sm:right-7 flex items-end justify-between gap-4">
-                <div>
-                  <p className="text-red-300 text-[10px] font-mono uppercase tracking-widest font-bold mb-1">{activeGalleryItem.label}</p>
-                  <h3 className="text-2xl sm:text-4xl font-black font-heading text-white">{activeGalleryItem.title}</h3>
-                  <p className="text-slate-200 text-xs sm:text-sm mt-1">{activeGalleryItem.detail}</p>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => setActiveGalleryIndex((activeGalleryIndex + 1) % fleetGallery.length)}
-                  className="shrink-0 w-11 h-11 rounded-full bg-white text-slate-950 flex items-center justify-center hover:bg-red-500 hover:text-white transition"
-                  aria-label="Show next fleet photo"
-                  title="Next fleet photo"
-                >
-                  <ChevronLeft className="w-5 h-5 rotate-180" />
-                </button>
-              </div>
-            </div>
-
-            <div className="lg:col-span-4 flex flex-col gap-4">
-              <div className="border border-slate-200 bg-white rounded-2xl p-5 sm:p-6 shadow-card">
-                <div className="flex items-center justify-between border-b border-slate-100 pb-4 mb-4">
-                  <span className="text-xs font-mono font-bold uppercase tracking-widest text-slate-600">Inspection index</span>
-                  <Maximize2 className="w-4 h-4 text-red-600" />
-                </div>
-                <div className="grid grid-cols-3 gap-2 max-h-[270px] overflow-y-auto pr-1">
-                  {fleetGallery.map((item, index) => (
-                    <button
-                      type="button"
-                      key={item.image}
-                      onClick={() => setActiveGalleryIndex(index)}
-                      className={`relative aspect-square overflow-hidden rounded-lg border-2 transition ${activeGalleryIndex === index ? 'border-red-600' : 'border-slate-200 hover:border-red-300'}`}
-                      aria-label={`View ${item.title}`}
-                      title={item.title}
-                    >
-                      <img src={item.image} alt="" className="w-full h-full object-cover" />
-                      <span className="absolute bottom-1 left-1 text-[9px] font-mono font-bold bg-slate-950/80 text-white px-1.5 py-0.5 rounded">
-                        {String(index + 1).padStart(2, '0')}
-                      </span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-              <div className="border border-red-200 bg-red-50/70 rounded-2xl p-5 sm:p-6 flex-1 shadow-card">
-                <span className="text-[10px] text-red-700 font-mono uppercase tracking-widest font-bold">Dispatch-ready standard</span>
-                <div className="mt-4 space-y-3 text-sm text-slate-700">
-                  <div className="flex justify-between gap-3 border-b border-red-200 pb-3"><span>Power units</span><strong className="text-slate-950">02 active</strong></div>
-                  <div className="flex justify-between gap-3 border-b border-red-200 pb-3"><span>Body type</span><strong className="text-slate-950">26ft box</strong></div>
-                  <div className="flex justify-between gap-3"><span>Load assist</span><strong className="text-slate-950">Electric jack</strong></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 5. FLEET CAPABILITIES & SECURITY DIAGNOSTICS */}
+      {/* 4. FLEET CAPABILITIES & SECURITY DIAGNOSTICS */}
       <section id="specs" className="border-t border-slate-200 bg-slate-50/60 py-12 sm:py-20 px-4 sm:px-8 relative">
         <div className="max-w-7xl mx-auto">
 
