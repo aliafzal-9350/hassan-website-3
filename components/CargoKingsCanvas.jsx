@@ -2,7 +2,7 @@
 
 import React, { Suspense, useRef, useState, useEffect, useMemo, useLayoutEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, useGLTF, ContactShadows, Text, useProgress } from '@react-three/drei';
+import { OrbitControls, useGLTF, ContactShadows, Text, useProgress, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 
 function CanvasLoader() {
@@ -69,81 +69,82 @@ const UNIT_CONFIG = {
 };
 
 function TruckBranding({ dimensions, selectedUnit }) {
-  const boxX = dimensions.width / 2 + 0.008;
+  const boxX = dimensions.width / 2 + 0.009;
   const rearZ = -dimensions.length / 2 - 0.012;
-  const rearBrandSize = Math.min(0.115, dimensions.width * 0.07);
-  const rearDetailSize = rearBrandSize * 0.76;
-  const rearTextWidth = dimensions.width * 0.76;
-  const color = UNIT_CONFIG[selectedUnit].branding;
+
+  const sideTexture = useTexture(
+    selectedUnit === 'blue'
+      ? '/image/truck-decal-blue.png'
+      : '/image/truck-decal-white.png'
+  );
+  const rearTexture = useTexture(
+    selectedUnit === 'blue'
+      ? '/image/truck-decal-rear-blue.png'
+      : '/image/truck-decal-rear-white.png'
+  );
+
+  useEffect(() => {
+    if (sideTexture) {
+      sideTexture.anisotropy = 16;
+      sideTexture.colorSpace = THREE.SRGBColorSpace;
+      sideTexture.needsUpdate = true;
+    }
+    if (rearTexture) {
+      rearTexture.anisotropy = 16;
+      rearTexture.colorSpace = THREE.SRGBColorSpace;
+      rearTexture.needsUpdate = true;
+    }
+  }, [sideTexture, rearTexture]);
 
   return (
     <group>
-      <Text
-        position={[-boxX, 1.18, -0.65]}
-        rotation={[0, -Math.PI / 2, 0]}
-        fontSize={0.18}
-        letterSpacing={0.005}
-        color={color}
-        anchorX="center"
-        anchorY="middle"
-        fontWeight="900"
-      >
-        CARGO KINGS INC
-      </Text>
-      <Text
-        position={[boxX, 1.18, -0.65]}
-        rotation={[0, Math.PI / 2, 0]}
-        fontSize={0.18}
-        letterSpacing={0.005}
-        color={color}
-        anchorX="center"
-        anchorY="middle"
-        fontWeight="900"
-      >
-        CARGO KINGS INC
-      </Text>
-      <Text
-        position={[0, 1.32, rearZ]}
-        rotation={[0, Math.PI, 0]}
-        fontSize={rearBrandSize}
-        letterSpacing={0.004}
-        maxWidth={rearTextWidth}
-        textAlign="center"
-        color={color}
-        anchorX="center"
-        anchorY="middle"
-        fontWeight="900"
-      >
-        CARGO KINGS INC
-      </Text>
-      <Text
-        position={[0, 1.08, rearZ]}
-        rotation={[0, Math.PI, 0]}
-        fontSize={rearDetailSize}
-        letterSpacing={0.003}
-        maxWidth={rearTextWidth}
-        textAlign="center"
-        color={color}
-        anchorX="center"
-        anchorY="middle"
-        fontWeight="900"
-      >
-        MC 1368401
-      </Text>
-      <Text
-        position={[0, 0.88, rearZ]}
-        rotation={[0, Math.PI, 0]}
-        fontSize={rearDetailSize}
-        letterSpacing={0.003}
-        maxWidth={rearTextWidth}
-        textAlign="center"
-        color={color}
-        anchorX="center"
-        anchorY="middle"
-        fontWeight="900"
-      >
-        USDOT 3801397
-      </Text>
+      {/* Driver Side Decal (Left Cargo Wall) */}
+      <mesh position={[-boxX, 1.20, -0.65]} rotation={[0, -Math.PI / 2, 0]}>
+        <planeGeometry args={[2.3, 0.72]} />
+        <meshStandardMaterial
+          map={sideTexture}
+          transparent
+          roughness={0.35}
+          metalness={0.05}
+          depthWrite={false}
+          polygonOffset
+          polygonOffsetFactor={-2}
+          polygonOffsetUnits={-2}
+          side={THREE.DoubleSide}
+        />
+      </mesh>
+
+      {/* Passenger Side Decal (Right Cargo Wall) */}
+      <mesh position={[boxX, 1.20, -0.65]} rotation={[0, Math.PI / 2, 0]}>
+        <planeGeometry args={[2.3, 0.72]} />
+        <meshStandardMaterial
+          map={sideTexture}
+          transparent
+          roughness={0.35}
+          metalness={0.05}
+          depthWrite={false}
+          polygonOffset
+          polygonOffsetFactor={-2}
+          polygonOffsetUnits={-2}
+          side={THREE.DoubleSide}
+        />
+      </mesh>
+
+      {/* Rear Rollup Door Livery Badge */}
+      <mesh position={[0, 1.16, rearZ]} rotation={[0, Math.PI, 0]}>
+        <planeGeometry args={[0.92, 0.92]} />
+        <meshStandardMaterial
+          map={rearTexture}
+          transparent
+          roughness={0.35}
+          metalness={0.05}
+          depthWrite={false}
+          polygonOffset
+          polygonOffsetFactor={-2}
+          polygonOffsetUnits={-2}
+          side={THREE.DoubleSide}
+        />
+      </mesh>
     </group>
   );
 }
@@ -246,6 +247,10 @@ function Model({ activePreset, selectedUnit }) {
 }
 
 useGLTF.preload('/models/truck.glb');
+useTexture.preload('/image/truck-decal-white.png');
+useTexture.preload('/image/truck-decal-blue.png');
+useTexture.preload('/image/truck-decal-rear-white.png');
+useTexture.preload('/image/truck-decal-rear-blue.png');
 
 export default function CargoKingsCanvas({ activePreset = 'default', selectedUnit = 'white' }) {
   const [webglSupported, setWebglSupported] = useState(true);

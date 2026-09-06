@@ -105,7 +105,7 @@ export default function HomePage() {
               className="flex items-center gap-1 sm:gap-1.5 text-slate-600 hover:text-red-600 transition group font-medium"
               title="TikTok @cargokingsinc"
             >
-              <svg className="w-3.5 h-3.5 fill-current text-red-600 group-hover:scale-110 transition-transform" viewBox="0 0 24 24">
+              <svg width="14" height="14" style={{ width: 14, height: 14 }} className="w-3.5 h-3.5 fill-current text-red-600 group-hover:scale-110 transition-transform shrink-0" viewBox="0 0 24 24">
                 <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.27 1.76-.23.84-.16 1.78.28 2.54.49.88 1.44 1.47 2.45 1.57.94.13 1.93-.12 2.66-.75.69-.57 1.11-1.43 1.14-2.32.04-3.55.02-7.11.02-10.66V.02h.01z" />
               </svg>
               <span className="text-[11px] font-mono hidden md:inline">TikTok</span>
@@ -247,19 +247,57 @@ export default function HomePage() {
       </header>
 
       {/* 3. HERO SHOWCASE WITH 3D TELEMETRY (2-COLUMN SHOWCASE) */}
-      <section id="hero" className="relative px-4 sm:px-8 max-w-7xl mx-auto pt-6 sm:pt-8 pb-12 sm:pb-16">
+      <section id="hero" className="relative px-4 sm:px-8 max-w-7xl mx-auto pt-6 sm:pt-8 pb-12 sm:pb-16 overflow-hidden">
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-10 items-center">
+        {/* AUTHENTIC BRAND LOGO WATERMARK IMPRINT (EXACT MATCH TO EXAMPLE.JPEG) */}
+        {/* Desktop Viewport (sm and up) - Unified Wide Logo Imprint */}
+        <div 
+          className="hidden sm:flex absolute inset-0 pointer-events-none select-none overflow-hidden z-0 justify-center items-center"
+          aria-hidden="true"
+        >
+          <div className="relative w-[860px] md:w-[1050px] lg:w-[1240px] max-w-[96vw] opacity-[0.18] lg:opacity-[0.20] transition-opacity shrink-0 flex items-center justify-center">
+            <img
+              src="/image/logo-full-retina.png"
+              alt=""
+              className="w-full h-auto object-contain filter contrast-125"
+            />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-10 items-center relative z-10">
 
           {/* Left Column: Hero Information */}
-          <div className="lg:col-span-6 space-y-4 sm:space-y-6">
+          <div className="lg:col-span-6 space-y-4 sm:space-y-6 relative">
 
-            <div className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-red-50 border border-red-200 text-red-700 text-[11px] sm:text-xs font-mono font-bold uppercase tracking-wider shadow-sm max-w-full">
+            {/* Mobile Viewport (< sm) - Tailored Initial Viewport Watermark */}
+            <div 
+              className="sm:hidden absolute inset-0 pointer-events-none select-none overflow-hidden z-0 flex flex-col justify-between items-center py-2"
+              aria-hidden="true"
+            >
+              {/* Emblem positioned behind headline and open space */}
+              <div className="relative w-[290px] max-w-[90vw] opacity-[0.16] flex justify-center pt-2">
+                <img
+                  src="/image/logo-emblem-retina.png"
+                  alt=""
+                  className="w-full h-auto object-contain filter contrast-125"
+                />
+              </div>
+              {/* Brand typography placed behind CTA buttons */}
+              <div className="relative w-[320px] max-w-[88vw] opacity-[0.13] pb-1 flex justify-center">
+                <img
+                  src="/image/logo-text-transparent.png"
+                  alt=""
+                  className="w-full h-auto object-contain filter contrast-125"
+                />
+              </div>
+            </div>
+
+            <div className="relative z-10 inline-flex items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-red-50 border border-red-200 text-red-700 text-[11px] sm:text-xs font-mono font-bold uppercase tracking-wider shadow-sm max-w-full">
               <Radio className="w-3.5 h-3.5 text-red-600 animate-pulse shrink-0" />
               <span className="truncate">2 Dedicated Power Units Ready For Dispatch</span>
             </div>
 
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-950 leading-[0.98] uppercase font-heading">
+            <h1 className="relative z-10 text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-950 leading-[0.98] uppercase font-heading">
               SUPREME<br />
               EXPEDITED<br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 via-red-500 to-rose-600">
@@ -267,52 +305,36 @@ export default function HomePage() {
               </span>
             </h1>
 
-            <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal max-w-lg">
+            <p className="relative z-10 text-sm sm:text-base text-slate-600 leading-relaxed font-normal max-w-lg">
               Engineered for high-security corridors and rapid regional freight. Dock-high box truck logistics equipped with onboard electric pallet jacks and verified TSA/TWIC operators.
             </p>
 
             {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-3 pt-1 sm:pt-2">
+            <div className="relative z-10 flex flex-col sm:flex-row gap-3 pt-1 sm:pt-2">
               <a
                 href="#booking"
-                className="w-full sm:w-auto bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-bold text-xs font-mono uppercase tracking-widest px-6 sm:px-7 py-3.5 sm:py-4 rounded-xl transition shadow-red-md flex items-center justify-center gap-2 transform hover:-translate-y-0.5 active:translate-y-0 min-h-[46px]"
+                className="w-full sm:w-auto bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-bold text-xs font-mono uppercase tracking-widest px-6 sm:px-7 py-3.5 sm:py-4 rounded-xl transition shadow-red-md flex items-center justify-center gap-2 transform hover:-translate-y-0.5 active:translate-y-0 min-h-[48px]"
               >
                 <span>Lock In Dedicated Load</span>
                 <ArrowUpRight className="w-4 h-4" />
               </a>
               <a
                 href="tel:9295037626"
-                className="w-full sm:w-auto bg-white hover:bg-red-50/50 border border-slate-300 hover:border-red-300 text-slate-800 hover:text-red-600 font-mono font-semibold text-xs tracking-wider uppercase px-5 sm:px-6 py-3.5 sm:py-4 rounded-xl transition shadow-sm flex items-center justify-center gap-2 min-h-[46px]"
+                className="w-full sm:w-auto bg-white hover:bg-red-50/50 border border-slate-300 hover:border-red-300 text-slate-800 hover:text-red-600 font-mono font-semibold text-xs tracking-wider uppercase px-5 sm:px-6 py-3.5 sm:py-4 rounded-xl transition shadow-sm flex items-center justify-center gap-2 min-h-[48px]"
               >
                 <Phone className="w-3.5 h-3.5 text-red-600" />
                 <span>Direct Dispatch</span>
               </a>
             </div>
 
-            {/* Quick Metrics Cards */}
-            <div className="grid grid-cols-3 gap-2 sm:gap-3 pt-4 sm:pt-6 border-t border-slate-200 font-mono">
-              <div className="bg-slate-50 border border-slate-200 p-2.5 sm:p-3.5 rounded-xl">
-                <span className="text-[9px] sm:text-[10px] text-slate-500 font-bold uppercase block tracking-wider">Equipment</span>
-                <span className="text-[11px] sm:text-xs font-bold text-slate-900 block mt-1 truncate">26ft Dock High</span>
-              </div>
-              <div className="bg-red-50/70 border border-red-200/80 p-2.5 sm:p-3.5 rounded-xl">
-                <span className="text-[9px] sm:text-[10px] text-red-700 font-bold uppercase block tracking-wider">Pallet Jack</span>
-                <span className="text-[11px] sm:text-xs font-bold text-red-600 block mt-1 truncate">Electric Unit</span>
-              </div>
-              <div className="bg-slate-50 border border-slate-200 p-2.5 sm:p-3.5 rounded-xl">
-                <span className="text-[9px] sm:text-[10px] text-slate-500 font-bold uppercase block tracking-wider">Clearance</span>
-                <span className="text-[11px] sm:text-xs font-bold text-slate-900 block mt-1 truncate">TSA & TWIC</span>
-              </div>
-            </div>
-
           </div>
 
-          {/* Right Column: Dedicated 3D Interactive Viewer Card */}
+          {/* Right Column: Dedicated 3D Interactive Viewer Card (Matching example.jpeg) */}
           <div className="lg:col-span-6 mt-2 lg:mt-0">
-            <div className="bg-gradient-to-b from-white to-red-50/20 border border-slate-200/90 rounded-2xl sm:rounded-3xl shadow-card overflow-hidden relative p-2 sm:p-2.5">
+            <div className="border border-slate-200/80 rounded-2xl sm:rounded-3xl shadow-sm overflow-hidden relative p-2 sm:p-2.5 bg-transparent">
 
               {/* Card Header with Status & Hints */}
-              <div className="flex items-center justify-between px-3 sm:px-4 pt-2.5 sm:pt-3 pb-2 border-b border-slate-100">
+              <div className="flex items-center justify-between px-2.5 sm:px-4 pt-2 sm:pt-3 pb-2 border-b border-slate-200/60">
                 <div className="flex items-center gap-1.5 sm:gap-2 font-mono text-[10px] sm:text-[11px] text-slate-700 font-bold">
                   <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse shrink-0" />
                   <span>3D FLEET</span>
@@ -326,63 +348,31 @@ export default function HomePage() {
                 </div>
               </div>
 
-              {/* 3D Canvas Box */}
-              <div className="w-full h-[290px] xs:h-[340px] sm:h-[420px] lg:h-[470px] relative bg-gradient-to-b from-slate-50/60 to-white rounded-xl sm:rounded-2xl overflow-hidden">
-                <div className="absolute top-3 left-3 right-3 sm:left-auto sm:right-3 z-10 flex flex-col items-end gap-2">
-                  <div className="grid w-full grid-cols-2 gap-1 rounded-2xl border border-white/70 bg-white/65 p-1 shadow-lg shadow-slate-900/10 backdrop-blur-xl sm:flex sm:w-auto sm:flex-wrap sm:justify-end sm:gap-1.5 sm:p-1.5">
+              {/* 3D Canvas Box - Transparent background so the watermark and grid shine through */}
+              <div className="w-full h-[320px] xs:h-[360px] sm:h-[430px] lg:h-[480px] relative bg-transparent rounded-xl sm:rounded-2xl overflow-hidden">
+                <div className="absolute top-2.5 left-2.5 right-2.5 sm:left-auto sm:right-3 z-10 flex flex-col items-end gap-1.5 sm:gap-2">
+                  <div className="grid w-full grid-cols-2 gap-1 rounded-xl sm:rounded-2xl border border-white/80 bg-white/85 p-1 shadow-md shadow-slate-900/5 backdrop-blur-md sm:flex sm:w-auto sm:flex-wrap sm:justify-end sm:gap-1.5 sm:p-1.5">
                     <button
                       type="button"
                       onClick={() => setSelectedUnit('white')}
                       aria-pressed={selectedUnit === 'white'}
-                      className={`flex min-w-0 items-center justify-center gap-1 rounded-xl px-1.5 py-1.5 text-[9px] font-bold uppercase tracking-wide whitespace-nowrap transition sm:gap-1.5 sm:px-2.5 sm:py-2 sm:text-[10px] ${selectedUnit === 'white' ? 'bg-slate-900 text-white shadow-md' : 'text-slate-700 hover:bg-white/80'}`}
+                      className={`flex min-w-0 items-center justify-center gap-1 sm:gap-1.5 rounded-lg sm:rounded-xl px-2 py-2 text-[10px] sm:text-[11px] font-bold uppercase tracking-wide whitespace-nowrap transition min-h-[38px] ${selectedUnit === 'white' ? 'bg-slate-900 text-white shadow-md' : 'text-slate-700 hover:bg-white/80 active:bg-white'}`}
                     >
-                      <span className="h-2.5 w-2.5 rounded-full border border-slate-400 bg-white" />
-                      Unit #1: Arctic White
+                      <span className="h-2.5 w-2.5 rounded-full border border-slate-400 bg-white shrink-0" />
+                      <span className="truncate">Unit #1: Arctic White</span>
                     </button>
                     <button
                       type="button"
                       onClick={() => setSelectedUnit('blue')}
                       aria-pressed={selectedUnit === 'blue'}
-                      className={`flex min-w-0 items-center justify-center gap-1 rounded-xl px-1.5 py-1.5 text-[9px] font-bold uppercase tracking-wide whitespace-nowrap transition sm:gap-1.5 sm:px-2.5 sm:py-2 sm:text-[10px] ${selectedUnit === 'blue' ? 'bg-[#0D449C] text-white shadow-md' : 'text-slate-700 hover:bg-white/80'}`}
+                      className={`flex min-w-0 items-center justify-center gap-1 sm:gap-1.5 rounded-lg sm:rounded-xl px-2 py-2 text-[10px] sm:text-[11px] font-bold uppercase tracking-wide whitespace-nowrap transition min-h-[38px] ${selectedUnit === 'blue' ? 'bg-[#0D449C] text-white shadow-md' : 'text-slate-700 hover:bg-white/80 active:bg-white'}`}
                     >
-                      <span className="h-2.5 w-2.5 rounded-full border border-blue-300 bg-[#0D449C]" />
-                      Unit #2: Cobalt Blue
+                      <span className="h-2.5 w-2.5 rounded-full border border-blue-300 bg-[#0D449C] shrink-0" />
+                      <span className="truncate">Unit #2: Cobalt Blue</span>
                     </button>
                   </div>
                 </div>
                 <CargoKingsCanvas activePreset={activePreset} selectedUnit={selectedUnit} />
-              </div>
-
-              {/* 3D Angle Selector Pills */}
-              <div className="p-2 sm:p-3 bg-white border-t border-slate-100">
-                <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center justify-center gap-1.5 sm:gap-2 font-mono text-xs">
-                  <span className="text-[10px] font-bold text-slate-400 uppercase mr-1 hidden md:inline">Camera View:</span>
-
-                  <button
-                    type="button"
-                    onClick={() => setActivePreset('side')}
-                    className={`px-3 py-2 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5 min-h-[40px] ${activePreset === 'side'
-                        ? 'bg-red-600 text-white shadow-red-sm'
-                        : 'bg-slate-100 text-slate-700 hover:bg-red-50 hover:text-red-600'
-                      }`}
-                  >
-                    <Layers className="w-3.5 h-3.5 shrink-0" />
-                    <span>02 // Cargo Profile</span>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => setActivePreset('rear')}
-                    className={`px-3 py-2 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5 min-h-[40px] ${activePreset === 'rear'
-                        ? 'bg-red-600 text-white shadow-red-sm'
-                        : 'bg-slate-100 text-slate-700 hover:bg-red-50 hover:text-red-600'
-                      }`}
-                  >
-                    <Truck className="w-3.5 h-3.5 shrink-0" />
-                    <span>03 // Rear Liftgate</span>
-                  </button>
-
-                </div>
               </div>
 
             </div>
